@@ -1,21 +1,20 @@
 Summary:	Sphinx extension zopeext
 Summary(pl.UTF-8):	Rozszerzenie Sphinksa zopeext
-Name:		python-sphinxcontrib-zopeext
-# keep 0.2.x here for python2 support
-Version:	0.2.4
+Name:		python3-sphinxcontrib-zopeext
+Version:	0.3.3
 Release:	1
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/sphinxcontrib-zopeext/
 Source0:	https://files.pythonhosted.org/packages/source/s/sphinxcontrib-zopeext/sphinxcontrib-zopeext-%{version}.tar.gz
-# Source0-md5:	905dfe63cecc87f9005c46d4a88196fa
+# Source0-md5:	12f1489ec1f278e04875df1e1af58a90
 URL:		https://pypi.org/project/sphinxcontrib-zopeext/
-BuildRequires:	python-modules >= 1:2.5
-BuildRequires:	python-setuptools
+BuildRequires:	python3-modules >= 1:3.6.2
+BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python-modules >= 1:2.5
-Requires:	python-sphinxcontrib
+Requires:	python3-modules >= 1:3.6.2
+Requires:	python3-sphinxcontrib
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,26 +42,18 @@ itp.
 %setup -q -n sphinxcontrib-zopeext-%{version}
 
 %build
-%py_build
+%py3_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py_install
-
-install -d $RPM_BUILD_ROOT%{_examplesdir}/python-sphinxcontrib-zopeext-%{version}
-%{__mv} $RPM_BUILD_ROOT%{py_sitescriptdir}/sphinxcontrib/zopeext/example.py $RPM_BUILD_ROOT%{_examplesdir}/python-sphinxcontrib-zopeext-%{version}
-%{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/sphinxcontrib/zopeext/example.py[co]
-
-%py_postclean
+%py3_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README.rst
-%{py_sitescriptdir}/sphinxcontrib/zopeext
-%{py_sitescriptdir}/sphinxcontrib_zopeext-%{version}-py*.egg-info
-%{py_sitescriptdir}/sphinxcontrib_zopeext-%{version}-py*-nspkg.pth
-%{_examplesdir}/python-sphinxcontrib-zopeext-%{version}
+%doc LICENSE README.rst
+%{py3_sitescriptdir}/sphinxcontrib/zopeext
+%{py3_sitescriptdir}/sphinxcontrib_zopeext-%{version}-py*.egg-info
